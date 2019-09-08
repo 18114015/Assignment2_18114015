@@ -1,0 +1,40 @@
+mov r2 1		  
+
+.for1:
+	mov r1 0        
+	mov R1 1
+	mov R2 1
+	mov R3 0
+	mov R4 1
+
+	mov r3 r2
+	.for2 :
+		mov r4 r2
+		.for3:
+			mul R1 r3 r3
+			mul R1 R1 r3
+			mul R2 r4 r4
+			mul R2 R2 r4
+			add R3 R2 R1
+			mul R4 r2 r2
+			mul R4 R4 r2
+			cmp R3 R4
+			beq .incrementcounter
+			.incrementcounter:
+				add r1 r1 1
+			sub r4 r4 1
+			cmp r4 0
+			bgt .for3
+		sub r3 r3 1
+		cmp r3 0
+		bgt .for2
+	
+	add r2 r2 1
+	cmp r1 2
+	beq .found
+	bgt .for1
+	cmp 2 r1
+	bgt .for1	
+.found:
+	exit
+	
